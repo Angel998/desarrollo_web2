@@ -1,0 +1,56 @@
+@import "utilities.css";
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+
+:root {
+  --background-color: #424242;
+}
+
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+/* Sidenav */
+.sidenav {
+  background-color: var(--background-color);
+}
+
+.sidenav a {
+  color: white !important;
+}
+
+.sidenav .brand-logo {
+  margin-top: 10px;
+  height: 130px !important;
+}
+
+.logo-sidenav {
+  height: 120px !important;
+}
+
+/* Movies */
+.movies {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.movie {
+  min-height: 200px;
+  width: 100%;
+  border: 1px solid rgb(198, 198, 198);
+  background-color: white;
+}
+
+@media (max-width: 800px) {
+  .movies {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .movies {
+    grid-template-columns: 1fr;
+  }
+}
