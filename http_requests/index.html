@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXIOS</title>
+
+    <style>
+      .d-block {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="blue darken-1">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">AXIOS</a>
+          <ul id="nav-mobile" class="right">
+            <li><a href="https://angel2h.com" target="_blank">angel</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card hoverable">
+            <div class="card-content">
+              <div>
+                <button class="btn" onclick="getUsers()">
+                  Obtener datos
+                </button>
+
+                <div class="btn" onclick="getUsersAsync()">
+                  Obtener datos async
+                </div>
+              </div>
+
+              <div id="datos"></div>
+              <p id="numero_usuarios"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const api_url = "https://jsonplaceholder.typicode.com"; // URL de la API
+      const div_datos = document.getElementById("datos"); // Elemento seleccionado
+      const p_numero_usuarios = document.getElementById("numero_usuarios");
+
+      // Obtiene los usuarios de la API con PROMESAS o CALLBACKS
+      function getUsers() {
+        setDataContent(getSpinner());
+        axios
+          .get(`${api_url}/users`)
+          .then(axiosResponse => {
+            const users = axiosResponse.data;
+            setUsersCount(users.length);
+            setDataContent(getUsersHtmlContent(users));
+          })
+          .catch(err => {
+            setDataContent(`
+          <div>
+            <h5>Ocurrio un error</h5> 
+            <b>${err}</b>
+          </div>`);
+          });
+      }
+
+      // Obtiene los usuarios de la API con ASYNC y AWAIT
+      async function getUsersAsync() {
+        setDataContent(getSpinner());
+        try {
+          const axiosResponse = await axios.get(`${api_url}/users/`);
+          const users = axiosResponse.data;
+          setUsersCount(users.length);
+          setDataContent(getUsersHtmlContent(users));
+        } catch (err) {
+          setDataContent(`
+          <div>
+            <h5>Ocurrio un error</h5> 
+            <b>${err}</b>
+          </div>`);
+        }
+      }
+
+      // Retorna todo el HTML para mostrar a los usuarios en el DIV seleccionado
+      function getUsersHtmlContent(users = []) {
+        let users_content = ``;
+        users.forEach(user => {
+          users_content += getUserHtmlContent(user);
+        });
+        return `
+        <ul class="collection">
+          ${users_content}
+        </ul>
+        `;
+      }
+
+      // Retorna el codigo HTML para mostrar un usuario
+      function getUserHtmlContent(user = {}) {
+        // Si la variable user esta vacia o es nula
+        if (!user || Object.keys(user).length === 0)
+          return `<li class="collection-item"></li>`;
+
+        return `
+        <li class="collection-item">
+          <b>${user.name}</b>
+          <span class="d-block">Usuario: ${user.username}</span>
+          <span class="d-block">Correo: ${user.email}</span>
+          <span class="d-block">Telefono: ${user.phone}</span>
+          <span class="d-block">Empresa: ${user.company.name}</span>
+        </li>`;
+      }
+
+      // Retorna un Spinner para mostrar la animacion de carga
+      function getSpinner() {
+        return `
+        <div class="preloader-wrapper big active mx-auto">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      }
+
+      // Inserta el codigo HTML en el DIV seleccionado
+      function setDataContent(html_code = "") {
+        div_datos.innerHTML = html_code;
+      }
+
+      // Actualiza el numero de usuarios en el parrafo
+      function setUsersCount(count = 0) {
+        if (count === 0) return (p_numero_usuarios.innerHTML = "");
+
+        p_numero_usuarios.innerHTML = `Usuarios: ${count}`;
+      }
+    </script>
+  </body>
+</html>
