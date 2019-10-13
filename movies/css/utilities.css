@@ -103,6 +103,27 @@
   margin-right: 50px;
 }
 
+/* Padding */
+.p-1 {
+  padding: 10px;
+}
+
+.p-2 {
+  padding: 20px;
+}
+
+.p-3 {
+  padding: 30px;
+}
+
+.p-4 {
+  padding: 40px;
+}
+
+.p-5 {
+  padding: 50px;
+}
+
 /* Text Align */
 .text-left {
   text-align: left;
@@ -131,4 +152,13 @@
 
 .text-white {
   color: #ffffff;
+}
+
+/* Font */
+.card-title {
+  font-size: 3rem !important;
+}
+
+.text-bold {
+  font-weight: bold !important;
 }

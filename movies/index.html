@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/materialize.min.css" />
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <!-- <link rel="stylesheet" href="css/utilities.css"> -->
     <title>A2H Movies</title>
   </head>
@@ -14,43 +17,46 @@
     <header>
       <nav class="black">
         <div class="container">
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">A2H</a>
-                <a href="#" data-target="mobile_nav" class="sidenav-trigger">
-                  <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
-                  <li><a href="#!">Inicio</a></li>
-                  <li><a href="#!">Peliculas en Cine</a></li>
-                  <li><a href="#!">Series</a></li>
-                  <li><a href="#!">Populares</a></li>
-                  <li><a href="#!">Proximamente</a></li>
-                  <li><a href="#!">Contacto</a></li>
-                </ul>
-              </div>
-            </nav>
-          
-            <ul class="sidenav" id="mobile_nav">
-              <li class="logo">
-                  <a href="#!" class="brand-logo center mt-1">
-                      <img src="https://avatars2.githubusercontent.com/u/44560049?s=400&u=8e3c1a55da2c80aa9bda0e37ea1c8d0facddf613&v=4" class="logo-sidenav" alt="" />
-                  </a>
-                <div class="divider"></div>
-              </li>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">A2H</a>
+            <a href="#" data-target="mobile_nav" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
               <li><a href="#!">Inicio</a></li>
               <li><a href="#!">Peliculas en Cine</a></li>
               <li><a href="#!">Series</a></li>
               <li><a href="#!">Populares</a></li>
               <li><a href="#!">Proximamente</a></li>
               <li><a href="#!">Contacto</a></li>
-            </ul> 
+            </ul>
+          </div>
+
+          <ul class="sidenav" id="mobile_nav">
+            <li class="logo">
+              <a href="#!" class="brand-logo center mt-1">
+                <img
+                  src="https://avatars2.githubusercontent.com/u/44560049?s=400&u=8e3c1a55da2c80aa9bda0e37ea1c8d0facddf613&v=4"
+                  class="logo-sidenav"
+                  alt=""
+                />
+              </a>
+              <div class="divider"></div>
+            </li>
+            <li><a href="#!">Inicio</a></li>
+            <li><a href="#!">Peliculas en Cine</a></li>
+            <li><a href="#!">Series</a></li>
+            <li><a href="#!">Populares</a></li>
+            <li><a href="#!">Proximamente</a></li>
+            <li><a href="#!">Contacto</a></li>
+          </ul>
         </div>
       </nav>
     </header>
 
     <!-- Titulo del sitio -->
     <section>
-      <div class="site-title">
+      <div class="site-title p-1">
         <div class="text-center">
           <h4>A2H Movies</h4>
           <span>Angel Hernandez</span>
@@ -60,31 +66,20 @@
     </section>
 
     <!-- Peliculas -->
-    <section class="mt-1">
+    <section class="mt-2">
       <div class="small-container">
-          <div class="card">
-              <div class="card-content">
-                <span class="card-title">Peliculas</span>
-                  <div class="movies">
-                      <div class="movie">
-                      </div>
-          
-                      <div class="movie">
-                        </div>
-          
-                      <div class="movie">
-                      </div>
-          
-                      <div class="movie">
-                      </div>
-                    </div>
-              </div>
-            </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title text-center">Peliculas</span>
+            <div id="movies_container"></div>
+          </div>
+        </div>
       </div>
     </section>
 
     <script src="js/materialize.min.js"></script>
     <script src="js/axios.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/movies.js"></script>
   </body>
 </html>
