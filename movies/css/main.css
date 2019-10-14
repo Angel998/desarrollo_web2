@@ -2,11 +2,15 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
 
 :root {
-  --background-color: #424242;
+  --background-color: #1d1d1d;
 }
 
 * {
   font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
 }
 
 /* Sidenav */
@@ -18,13 +22,16 @@
   color: white !important;
 }
 
-.sidenav .brand-logo {
-  margin-top: 10px;
+.sidenav .logo {
+  height: 140px;
+  margin-bottom: 20px;
+}
+.sidenav .logo img {
   height: 130px !important;
 }
 
-.logo-sidenav {
-  height: 120px !important;
+.site-title {
+  background-color: #fff;
 }
 
 /* Movies */
@@ -72,15 +79,82 @@
   right: o;
 }
 
-.movie-content .movie-title {
+.movie-content .movie-title,
+.serie .title {
   display: block;
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.movie-content .movie-overview {
   white-space: pre-wrap !important;
   overflow-wrap: break-word;
+}
+
+.movie-content .movie-overview,
+.serie .overview {
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word;
+}
+
+/* Series */
+.series {
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.serie {
+  cursor: pointer;
+  border: 1px solid rgb(198, 198, 198);
+  height: 300px;
+  width: 200px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.serie .content {
+  height: 200%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: relative;
+  transition: height 0.5s ease-out;
+}
+
+.serie .content:hover {
+  height: 100%;
+}
+
+.serie .details {
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  box-shadow: inherit 40px 40px 40px 40px #000000;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.series::-webkit-scrollbar {
+  width: 5px;
+}
+
+.series::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 20px;
+}
+
+.series::-webkit-scrollbar-thumb {
+  background: rgb(145, 145, 145);
+  border-radius: 10px;
+}
+
+.series::-webkit-scrollbar-thumb:hover {
+  background: rgb(102, 102, 102);
 }
 
 @media (max-width: 800px) {

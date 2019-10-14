@@ -1,7 +1,7 @@
 const config = {
   api_header_token: "Authorization",
   api_url: "https://api.themoviedb.org/3",
-  api_token: "Bearer",
+  api_token: "Bearer TOKEN_AQUI", // <----------
   poster_url: "https://image.tmdb.org/t/p/w500"
 };
 const initFunctions = [];
@@ -9,7 +9,10 @@ const initFunctions = [];
 document.addEventListener("DOMContentLoaded", async () => {
   M.Sidenav.init(document.querySelectorAll(".sidenav"), {});
   configAxios();
+
   await loadScript("js/actions.js");
+  await loadScript("js/Movies.js");
+  await loadScript("js/Series.js");
   initFunctions.forEach(customFunction => customFunction());
 });
 
@@ -27,7 +30,7 @@ async function loadScript(url) {
     const script = document.createElement("script");
     script.src = url;
     script.onload = resolve;
-    document.head.appendChild(script);
+    document.body.appendChild(script);
   });
 }
 
@@ -35,8 +38,7 @@ function getPosterImageUrl(file = "") {
   return `${config.poster_url}${file}`;
 }
 
-function getSpinner(center = true, loading = true) {
-  if (!loading) return;
+function getSpinner(center = true) {
   const spinner_html = `
     <div class="preloader-wrapper big active">
         <div class="spinner-layer spinner-blue-only">
@@ -78,4 +80,10 @@ function isEmpty(value) {
     (typeof value === "object" && Object.keys(value).length === 0) ||
     (typeof value === "string" && value.trim().length === 0)
   );
+}
+
+function sleep(seconds = 0) {
+  return new Promise(resolve => {
+    setTimeout(resolve, seconds * 1000);
+  });
 }
