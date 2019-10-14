@@ -16,6 +16,6 @@ const config = {
 
 ### Vista Previa
 
-![A2H Movies Header](https://i.imgur.com/2vj0pO3.png)
+![A2H Movies Header](https://i.imgur.com/l8lSaz0.jpg)
 
 ![A2H Movies](https://i.imgur.com/6DuIoO5.jpg)
