@@ -46,7 +46,7 @@ class Movies {
       this.setState({ movies, loading: false });
     } catch (err) {
       this.setState({ loading: false });
-      console.log("Error obteniendo las peliculas", err);
+      logError(err, "Error obteniendo Peliculas");
     }
   }
 

@@ -46,7 +46,7 @@ class Series {
       this.setState({ series, loading: false });
     } catch (err) {
       this.setState({ loading: false });
-      console.log("Error obteniendo series", err);
+      logError(err, "Error obteniendo Series");
     }
   }
 

@@ -72,6 +72,16 @@ function getEmptyIcon(message = "") {
   `;
 }
 
+function getMinifiedArray(array = [], limit = 0) {
+  if (limit <= 0 || array.length < limit) return array;
+
+  const newArray = [];
+  for (let index = 0; index < limit; index++) {
+    newArray.push(array[index]);
+  }
+  return newArray;
+}
+
 function isEmpty(value) {
   return (
     value === undefined ||
