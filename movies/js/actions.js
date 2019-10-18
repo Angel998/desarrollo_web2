@@ -8,8 +8,15 @@ async function getMovies(limit = 0) {
 }
 
 async function getMovie(id = 0) {
-  const axiosResponse = await axios.get(`${config.api_url}/movie/${id}`);
+  const axiosResponse = await axios.get(
+    `${config.api_url}/movie/${id}?language=es-ES`
+  );
   return axiosResponse.data;
+}
+
+async function getMovieVideos(id = 0) {
+  const axiosResponse = await axios.get(`${config.api_url}/movie/${id}/videos`);
+  return axiosResponse.data.results;
 }
 
 async function getSeries(limit = 0) {

@@ -8,6 +8,10 @@ const initFunctions = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
   M.Sidenav.init(document.querySelectorAll(".sidenav"), {});
+  M.Modal.init(document.querySelectorAll(".modal"), {
+    dismissible: false,
+    opacity: 0.8
+  });
   configAxios();
 
   await loadScript("js/actions.js");
