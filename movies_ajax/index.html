@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <title>ThemovieDB AJAX</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <h5>Peliculas</h5>
+
+              <div id="peliculas"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      const config = {
+        api_url: "https://api.themoviedb.org/3",
+        api_token: "Bearer TOKEN_AQUI", // <---------------
+        poster_url: "https://image.tmdb.org/t/p/w500"
+      };
+      const div_contenedor = document.getElementById("peliculas");
+
+      // Ejecutar cuando el sitio web termine de cargar
+      document.addEventListener("DOMContentLoaded", () => {
+        obtenerPeliculas();
+      });
+
+      function obtenerPeliculas() {
+        ajaxGet(
+          "/movie/now_playing?language=es-ES&page=1",
+          response => {
+            mostrarPeliculas(response.results);
+          },
+          err => {
+            div_contenedor.innerHTML = `Ocurrio un error <br> ${err.responseText}`;
+          }
+        );
+      }
+
+      function mostrarPeliculas(peliculas) {
+        let peliculas_html = ``;
+        peliculas.forEach(
+          pelicula => (peliculas_html += obtenerPeliculaHTML(pelicula))
+        );
+        div_contenedor.innerHTML = peliculas_html;
+      }
+
+      function obtenerPeliculaHTML(pelicula = {}) {
+        const { poster_path, overview, title, id } = pelicula;
+        return `
+        <div class="card horizontal hoverable" id="pelicula_${id}">
+            <div class="card-image">
+                <img src="${obtenerImagen(poster_path)}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h5>${title}</h5>
+                    <p>${overview}</p>
+                </div>
+            </div>
+        </div>
+          `;
+      }
+
+      // Ejecuta una peticion de tipo GET con AJAX
+      function ajaxGet(url, onSuccess, onError, dataType = "json") {
+        const { api_url, api_token } = config;
+        $.ajax({
+          type: "GET",
+          url: `${api_url}${url}}`,
+          headers: {
+            Authorization: api_token
+          },
+          dataType,
+          success: response => onSuccess(response),
+          error: err => onError(err)
+        });
+      }
+
+      function obtenerImagen(file = "") {
+        return `${config.poster_url}${file}`;
+      }
+    </script>
+  </body>
+</html>
